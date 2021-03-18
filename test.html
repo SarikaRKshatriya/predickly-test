@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Machine test for Predikly in JavaScript</h2>
+<label>Number of People in Room</label>
+<input type="text" id="people"><br>
+<label>Enter Rhyme</label>
+<input type="text" id="rhyme"><br>
+<button onclick="start()">click</button><br>
+<span>Stand at position</span>
+<span id="position"></span> 
+<script>
+	function start(){
+		var ppl = document.getElementById("people").value;
+		let rhyme = document.getElementById("rhyme").value;
+		var arr=[];
+		for (var i = 1; i <= ppl; i++) {
+ 		  arr.push(i);
+		}
+		var strArr = arr.map(function(e){return e.toString()});
+		var rhy = rhyme.split(" ").length;
+		var position = calculate(strArr,1);
+		document.getElementById("position").innerHTML = position;
+
+	}
+
+function calculate(arr,loc){
+first = arr.slice(0, 1);
+second = arr.slice(loc+ 1);
+third = second.concat(first);
+arr = third;
+if(arr.length > 1){
+	calculate(arr,loc);
+}
+return third;
+}
+</script>
+
+</body>
+</html>
